@@ -19,6 +19,8 @@ Has shortcuts for easier accesibility.
 - CTRL + C to copy username.
 - CTRL + V to copy password.
 - SHIFT + A to Add a new Key.
+- Delete to remove the selected entry from the list.
+- CTRL + Q to Quit.
 
 
 Dependencies.
