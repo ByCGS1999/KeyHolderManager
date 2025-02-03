@@ -24,6 +24,9 @@ Its a fast, safe, easy to setup, password manager.
 - CTRL + Q to Quit.
 
 It also allows you to filter through all your credentials using the 'identifier' column.
+<br>
+
+![video](https://github.com/user-attachments/assets/54b274bd-0eea-47b5-8464-3c60dd73c557)
 
 # Tested Platforms
 - Windows
