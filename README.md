@@ -6,7 +6,7 @@ Its a fast, safe, easy to setup, password manager.
 With a simplistic ImGUI ui for its user interface.
 ![image](https://github.com/user-attachments/assets/3b5e5cf5-1506-4c60-879b-e5606c0cc037).
 
-It comes with a built in safe password generator.
+It comes with a built in safe customizable password generator (64 chars max).
 <br>
 ![image](https://github.com/user-attachments/assets/a1bd07b3-5ff6-402a-bb5f-63e4fe87eb96)
 
