@@ -224,6 +224,8 @@ void handleImguiKeyboard()
 		keyContainer.enteredGlobalPassword = false;
 	if (ImGui::IsKeyPressed(ImGuiKey_K, false) && io.KeyMods & ImGuiMod_Ctrl && io.KeyMods & ImGuiMod_Shift)
 		toggleMasterKeyOverridePopup = true;
+	if (ImGui::IsKeyPressed(ImGuiKey_A, false) && io.KeyMods & io.KeyMods & ImGuiMod_Shift)
+		toggleAddKeyPopup = true;
 }
 
 void InitMasterKeyPopup()
