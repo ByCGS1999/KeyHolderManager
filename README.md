@@ -7,10 +7,12 @@ Its a fast, safe, easy to setup, password manager.
 
 # It comes with a built in safe customizable password generator (64 chars max).
 <br>
+
 ![image](https://github.com/user-attachments/assets/a1bd07b3-5ff6-402a-bb5f-63e4fe87eb96)
 
 # And has multiple built-in themes.
 <br>
+
 ![image](https://github.com/user-attachments/assets/d0b6b14d-8c71-4f94-9ba1-47b7e3979cb1)
 ![image](https://github.com/user-attachments/assets/b30c3a36-c36f-42dd-9261-8e1078cd7245)
 
