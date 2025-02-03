@@ -1,0 +1,8 @@
+{
+  "dependencies": [
+    "cryptopp",
+    "glad",
+    "glfw3",
+    "sqlite3"
+  ]
+}
