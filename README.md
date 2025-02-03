@@ -23,11 +23,10 @@ Has shortcuts for easier accesibility.
 - CTRL + Q to Quit.
 
 It also allows you to filter through all your credentials using the 'identifier' column.
-[![Watch the video]](https://github.com/user-attachments/assets/54b274bd-0eea-47b5-8464-3c60dd73c557)
-
-
 
 Dependencies.
 
 - CMake
 - VCPkg
+- C++20
+- A Brain (semi functional should be enough)
