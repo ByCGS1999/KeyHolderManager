@@ -167,8 +167,8 @@ bool InitDB()
                     Identifier TEXT NOT NULL,
                     Username TEXT NOT NULL,
                     Password TEXT NOT NULL, 
-                    Key BLOB TEXT NULL,  
-                    IV BLOB TEXT NULL
+                    Key TEXT NOT NULL,  
+                    IV TEXT NOT NULL
                 );
         )";
 

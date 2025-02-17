@@ -13,8 +13,8 @@ public:
 	void GenerateRandomKeyAndIV();
 	void GenerateRandomKey();
 	void GenerateRandomIV();
-	std::string encryptString(const std::string rawData);
-	std::string decryptString(const std::string password);
+	std::string encryptString(const std::string& rawData);
+	std::string decryptString(const std::string& password);
 
 	void SetKey(const std::string key);
 

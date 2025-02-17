@@ -15,7 +15,7 @@ bool shouldClose = true;
 int selectedRow = -1;
 bool dbWasCreated = false;
 bool seepassword = false;
-KeyContainer keyContainer;
+KeyContainer* keyContainer = nullptr;
 
 bool initMainWindow = false;
 bool initMasterKeyPopup = false;
@@ -28,7 +28,6 @@ bool toggleDropDatabasePopup = false;
 bool toggleAddKeyPopup = false;
 bool toggleMasterKeyOverridePopup = false;
 bool togglePasswordGenerator = false;
-
 
 std::string filterText = "";
 std::string password = "";
@@ -64,7 +63,7 @@ void copyUsernameToClipboard(int index)
 		if (selectedRow == -1)
 			return;
 
-		ImGui::SetClipboardText(keyContainer.GetContainers().at(index).username.c_str());
+		ImGui::SetClipboardText(keyContainer->GetContainers().at(index).username.c_str());
 	}
 	catch (std::exception ex)
 	{
@@ -79,7 +78,7 @@ void copyPasswordToClipboard(int index)
 		if (selectedRow == -1)
 			return;
 
-		Container c = keyContainer.getDecryptedContainer(index);
+		Container c = keyContainer->getDecryptedContainer(index);
 
 		if (c.identifier == "ERROR" && c.username == "DECRYPTING" && c.decryptPassword() == "CONTAINER")
 			return;
@@ -94,7 +93,7 @@ void copyPasswordToClipboard(int index)
 
 void deleteRegistry(int index)
 {
-	keyContainer.removeContainer(index);
+	keyContainer->removeContainer(index);
 }
 
 int main()
@@ -152,7 +151,7 @@ int main()
 
 	dbWasCreated = InitDB();
 
-	keyContainer = KeyContainer();
+	keyContainer = new KeyContainer();
 
 	glfwHideWindow(window);
 
@@ -209,7 +208,7 @@ void handleImguiKeyboard()
 {
 	ImGuiIO& io = ImGui::GetIO();
 
-	if (!keyContainer.enteredGlobalPassword || toggleDropDatabasePopup || toggleAddKeyPopup)
+	if (!keyContainer->enteredGlobalPassword || toggleDropDatabasePopup || toggleAddKeyPopup)
 		return;
 
 	if (ImGui::IsKeyPressed(ImGuiKey_Q, false) && io.KeyMods & ImGuiMod_Ctrl)
@@ -221,7 +220,7 @@ void handleImguiKeyboard()
 	if (ImGui::IsKeyPressed(ImGuiKey_Delete, false))
 		deleteRegistry(selectedRow);
 	if (ImGui::IsKeyPressed(ImGuiKey_I, false) && io.KeyMods & ImGuiMod_Ctrl)
-		keyContainer.enteredGlobalPassword = false;
+		keyContainer->enteredGlobalPassword = false;
 	if (ImGui::IsKeyPressed(ImGuiKey_K, false) && io.KeyMods & ImGuiMod_Ctrl && io.KeyMods & ImGuiMod_Shift)
 		toggleMasterKeyOverridePopup = true;
 	if (ImGui::IsKeyPressed(ImGuiKey_A, false) && io.KeyMods & ImGuiMod_Shift)
@@ -263,8 +262,8 @@ void InitMasterKeyPopup()
 		{
 			if (password != "")
 			{
-				keyContainer.setGlobalPassword(password);
-				InsertGlobalIV(keyContainer.getGlobalIV());
+				keyContainer->setGlobalPassword(password);
+				InsertGlobalIV(keyContainer->getGlobalIV());
 				ImGui::CloseCurrentPopup();
 			}
 		}
@@ -326,10 +325,10 @@ void MasterKeyOverridePopup()
 
 		if (ImGui::Button("Continue"))
 		{
-			keyContainer.Migrate(mo_Password, mo_newPassword, mo_changeGlobalIV);
+			keyContainer->Migrate(mo_Password, mo_newPassword, mo_changeGlobalIV);
 
 			if(mo_changeGlobalIV)
-				UpdateGlobalIV(keyContainer.getGlobalIV());
+				UpdateGlobalIV(keyContainer->getGlobalIV());
 			
 			toggleMasterKeyOverridePopup = false;
 
@@ -422,7 +421,7 @@ void AddKeyPopup()
 
 		if (ImGui::Button("Yes"))
 		{
-			keyContainer.addKeyToContainer(Container(add_identifier, add_username, add_password));
+			keyContainer->addKeyToContainer(Container(add_identifier, add_username, add_password));
 
 			add_identifier = "";
 			add_password = "";
@@ -503,7 +502,7 @@ void drawGui()
 			initMainWindow = true;
 		}
 
-		if (!keyContainer.enteredGlobalPassword)
+		if (!keyContainer->enteredGlobalPassword)
 			ImGui::OpenPopup("Enter Master Key");
 		if (toggleDropDatabasePopup)
 			ImGui::OpenPopup("Drop Database");
@@ -585,7 +584,7 @@ void drawGui()
 
 					if (ImGui::MenuItem("Re-Input", "CTRL + I"))
 					{
-						keyContainer.enteredGlobalPassword = false;
+						keyContainer->enteredGlobalPassword = false;
 					}
 
 					ImGui::EndMenu();
@@ -631,9 +630,9 @@ void drawGui()
 			ImGui::TableSetupColumn("Password");
 			ImGui::TableHeadersRow();
 
-			auto containers = keyContainer.GetContainers();
+			auto containers = keyContainer->GetContainers();
 
-			for (int i = 0; i < keyContainer.GetContainerCount(); ++i)
+			for (int i = 0; i < keyContainer->GetContainerCount(); ++i)
 			{
 				if (filterText != "")
 				{
@@ -670,13 +669,13 @@ void drawGui()
 
 					// Display inputs in the row
 					ImGui::TableSetColumnIndex(1);
-					ImGui::TextUnformatted(keyContainer.GetContainers()[i].identifier.c_str());
+					ImGui::TextUnformatted(keyContainer->GetContainers()[i].identifier.c_str());
 
 					ImGui::TableSetColumnIndex(2);
-					ImGui::TextUnformatted(keyContainer.GetContainers()[i].username.c_str());
+					ImGui::TextUnformatted(keyContainer->GetContainers()[i].username.c_str());
 
 					ImGui::TableSetColumnIndex(3);
-					ImGui::TextUnformatted(keyContainer.GetContainers()[i].password.c_str());
+					ImGui::TextUnformatted(keyContainer->GetContainers()[i].password.c_str());
 				}
 			}
 

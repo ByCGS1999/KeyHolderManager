@@ -53,7 +53,7 @@ endif()
 include_directories ("./include/")
 set_target_properties(KeyHolderManager PROPERTIES LINK_FLAGS "/ENTRY:mainCRTStartup /SUBSYSTEM:WINDOWS")
 
-# PACKAGES # 
+# PACKAGES #
 
 find_package(glfw3 CONFIG REQUIRED)
 find_package(glad CONFIG REQUIRED)

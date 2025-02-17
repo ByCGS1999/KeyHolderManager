@@ -53,14 +53,17 @@ std::string Container::decryptPassword()
 
 KeyContainer::KeyContainer()
 {
-	this->keyContainers = LoadContainers();
+	this->keyContainers = std::vector<Container>();
 	if (GetGlobalIV().empty())
 	{
+		printf("GlobalIV not found\n");
 		this->globalIV = "";
 	}
 	else
 	{
+		printf("GlobalIV Found, Loading...\n");
 		this->globalIV = GetGlobalIV();
+		this->keyContainers = LoadContainers();
 	}
 }
 
