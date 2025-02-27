@@ -41,3 +41,5 @@ Theoricly, it should work natively in both Linux and Mac as it doesn't use any W
 - VCPKG (GLFW3, GLAD, CryptoPP, SQLITE3)
 - C++20
 - A Brain (semi functional should be enough)
+
+- Change VCPKG root route to make it work.
