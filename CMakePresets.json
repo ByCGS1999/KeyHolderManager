@@ -10,7 +10,7 @@
       "cacheVariables": {
         "CMAKE_C_COMPILER": "cl.exe",
         "CMAKE_CXX_COMPILER": "cl.exe",
-        "VCPKG_TOOLCHAIN_FILE": "C:/Users/Carles/Documents/Git/vcpkg/scripts/buildsystems/vcpkg.cmake"
+        "VCPKG_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
       },
       "condition": {
         "type": "equals",
@@ -29,7 +29,7 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "VCPKG_TARGET_TRIPLET": "x64-windows",
-        "VCPKG_TOOLCHAIN_FILE": "C:/Users/Carles/Documents/Git/vcpkg/scripts/buildsystems/vcpkg.cmake"
+        "VCPKG_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
       }
     },
     {
@@ -39,7 +39,7 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
         "VCPKG_TARGET_TRIPLET": "x64-windows",
-        "VCPKG_TOOLCHAIN_FILE": "C:/Users/Carles/Documents/Git/vcpkg/scripts/buildsystems/vcpkg.cmake"
+        "VCPKG_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
       }
     },
     {
